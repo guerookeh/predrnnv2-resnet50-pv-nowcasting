@@ -1,4 +1,4 @@
-# PredRNNv2 + Re Solar Photovoltaic Yield Nowcasting
+# PredRNNv2 + ResNet50 Solar Photovoltaic Yield Nowcasting
 
 A very experimental (and unfortunately unsubmitted ClimateHack2023) attempt at using the PredRNNv2 model from the paper ["PredRNN: A Recurrent Neural Network for Spatiotemporal Predictive Learning"](https://arxiv.org/abs/2103.09504) to generate the next four hours at five-minute intervals of High-Resolution Visible (HRV) satellite imagery over a solar site based on the current hour, followed up by an imagery to solar photovoltaic yield conversion using a pretrained and lightly finetuned ResNet50. 
 
@@ -14,10 +14,8 @@ A tensor of satellite imagery with dimensions $12 \times 128 \times 128$, repres
 
 The reason why I chose PredRNNv2 for this task is due to 1. the architecture of a recurrent neural network makes it well-suited for processing sequential data, and 2. the integration of spatial information into a temporal sequence model through the PredRNN paper's problem formulation, Spatiotemporal Predictive Learning, quoted down below.
 
-**Spatiotemporal Predictive Learning**, directly from ["PredRNN: A Recurrent Neural Network for Spatiotemporal Predictive Learning](https://arxiv.org/abs/2103.09504"):
-Suppose we are monitoring a dynamical system of $J$ measurements over time, where each measurement is recorded at all locations in a spatial region represented by a $M\times N$ grid. From the spatial view, the observation of these $J$ measurements at any time can be represented by a tensor of $\mathbf{X} \in \mathbb{R}^{J \times M \times N}$. From the temporal view, the observations over $T$ time-steps form a sequence of $\mathbf{X}\_{\text{in}}=\{\mathbf{X}_1,...,\mathbf{X}_T\}$. Given $\mathbf{X}_{\text{in}}$, the spatiotemporal predictive learning is to predict the most probable length-$K$ sequence in the future, $\mathbf{\hat{X}}_{\text{out}}=\{{\hat{X}}_{T+1},...,\hat{X}_{T+K}\}$. In this paper, we train neural networks parameterized by $\theta$. Concretely, we use stochastic gradient descent to find a set of parameters $\theta^*$ that maximizes the log-likelihood of producing the true target sequence $\mathbf{X}_{\text{out}}$ given the  $\mathbf{X}_{\textbf{in}}$ for all training pairs $\{(\mathbf{X} _{\text{in}}^n, \mathbf{X} _{\text{out}}^n )\}_n$. 
-$$
-\theta^*=\text{argmax}_\theta \sum_{(\mathbf{X} _{\text{in}}^n, \mathbf{X} _{\text{out}}^n )}\log\Pr(\mathbf{X} _{\text{out}}^n|\mathbf{X} _{\text{in}}^n;\theta)
-$$
+**Spatiotemporal Predictive Learning**, directly from ["PredRNN: A Recurrent Neural Network for Spatiotemporal Predictive Learning](https://arxiv.org/abs/2103.09504)":
+> Suppose we are monitoring a dynamical system of $J$ measurements over time, where each measurement is recorded at all locations in a spatial region represented by a $M\times N$ grid. From the spatial view, the observation of these $J$ measurements at any time can be represented by a tensor of $\mathbf{X} \in \mathbb{R}^{J \times M \times N}$. From the temporal view, the observations over $T$ time-steps form a sequence of $\mathbf{X}\_{\text{in}}=\{\mathbf{X}\\_1,...,\mathbf{X}\\_T\}$. Given $\mathbf{X}\_{\text{in}}$, the spatiotemporal predictive learning is to predict the most probable length- $K$ sequence in the future, $\mathbf{\hat{X}}\_{\text{out}}=\{{\hat{X}}\_{T+1},...,\hat{X}\_{T+K}\}$. In this paper, we train neural networks parameterized by $\theta$. Concretely, we use stochastic gradient descent to find a set of parameters $\theta^\*$ that maximizes the log-likelihood of producing the true target sequence $\mathbf{X}\_{\text{out}}$ given the  $\mathbf{X}\_{\textbf{in}}$ for all training pairs $\{(\mathbf{X} \_{\text{in}}^n, \mathbf{X}\_{\text{out}}^n )\}\_n$. 
+$$\theta^\*=\text{argmax}\_\theta \sum\_{(\mathbf{X} \_{\text{in}}^n, \mathbf{X} \_{\text{out}}^n )}\log\Pr(\mathbf{X} \_{\text{out}}^n|\mathbf{X} \_{\text{in}}^n;\theta)$$
 
 _More to add and edit later..._
