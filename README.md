@@ -1,5 +1,4 @@
 # PredRNNv2 + ResNet50 Solar Photovoltaic Yield Nowcasting
----
 A very experimental (and unfortunately unsubmitted ClimateHack2023) attempt at using the PredRNNv2 model from the paper ["PredRNN: A Recurrent Neural Network for Spatiotemporal Predictive Learning"](https://arxiv.org/abs/2103.09504) to generate the next four hours at five-minute intervals of High-Resolution Visible (HRV) satellite imagery over a solar site based on the current hour, followed up by an imagery to solar photovoltaic yield conversion using a pretrained and lightly finetuned ResNet50. 
 
 The PredRNNv2 model code is directly taken from The PyTorch implementation of PredRNNv2 found [here](https://github.com/thuml/predrnn-pytorch).
