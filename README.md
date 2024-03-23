@@ -4,7 +4,7 @@ An experimental (and unfortunately unsubmitted ClimateHack2023) attempt for fun 
 The PredRNNv2 model code is directly taken from The PyTorch implementation of PredRNNv2 found [here](https://github.com/thuml/predrnn-pytorch).
 
 ![Visual of a forward pass on the PredRNNv2 model; the first 12 images are the input, the later 48 images are the output.](temp_ex.gif)
-*Quick GPT-generated visual of a forward pass on the PredRNNv2 model; first 12 images are the input, the later 48 images are the output.*
+*Visual of a forward pass on the PredRNNv2 model; the first 12 images are the input, the later 48 images are the output.*
 
 The aim, more specifically, was cloud coverage prediction. This model was trained on only 1,300 training examples randomly picked across the years 2020-2021, so it doesn't perform that well. More training would be ideal, yet it takes a long time to train since recurrent neural networks are not entirely parallelizable, it is expensive, and I don't have a GPU (and Google Colab is not an alternative and disconnects you way too often and sporadically, even with Google Colab Pro).
 
